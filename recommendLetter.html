@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Full Letter</title>
+    <style>
+        * {
+            margin: 0;
+        }
+        html {
+        }
+        body {
+            overflow: hidden;
+            height: 100vh;
+            min-height: 100vh;
+            background: #f2f2f2;
+        }
+        
+        #head {
+            text-align: center;
+            padding-top: 25px;
+            
+        }
+        #date {
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-top: 50px;
+            margin-bottom: 0px;
+        }
+        #letter-body {
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-top: 25px;
+        }
+        .paragraph {
+            margin-top: 25px;
+            text-indent: 25px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        #goodbye {
+            display: grid;
+            grid-template-columns: 50% 50%;
+
+            overflow: visible;
+
+            margin-top: 10px;
+            margin-left: 0px;
+        }
+        #parting {
+            margin-bottom: 10px;
+        }
+        #your-name, #your-instit {
+            grid-column: 1 / 2;
+            grid-row: 2 / 3;
+        }
+        #your-instit {
+            margin-top: 15px;
+        }
+        
+        #parting, #your-name, #your-instit {
+            grid-column: 1 / 2;
+        }
+
+        @media screen and (min-width: 700px ) {
+            body {
+                margin-left: 15%;
+                margin-right: 15%;
+            }
+        }
+        @media screen and (min-width: 1000px) {
+            body {
+                margin-left: 20%;
+                margin-right: 20%;
+            }
+            #head {
+                margin-top: 15%;
+            }
+        }
+        @media screen and (min-width: 1400px) {
+            body {
+                margin-left: 30%;
+                margin-right: 30%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="header-container">
+        <h1 id="head">Letter of Recommendation For [fullName]</h1>
+        <p id="date"></p>
+    </div>
+    
+    <div id="letter-body">
+        <h3 id="greeting">To Whom It May Concern at [addressee],</h3>
+
+        <p class="paragraph"id="first-para">
+            It is with the utmost greatest of honors to recommend [fullName] for your consideration at [addressee]. I have known [firstName] for [numYears] years. During this time, I served as [genderPos] [relationship]. [firstName] has shown me exceptional qualities during this time.
+        </p>
+        
+        <p class="paragraph"id="second-para">
+            As [firstName]'s [relationship], I witnessed [genderPos] talent in many ways. [gender] displayed [firstStr], [secondStr], and [thirdStr] while undergoing challenges they faced with me. I was impressed to see that [gender] had showcased such [thirdStr] for situations encountered while with me. [firstName]'s wide-ranging [fourthStr] is exceptionally noteworthy for [genderPos] application at [addressee].
+        </p>
+
+        <p class="paragraph" id="third-para">
+            It is clear that [firstName]'s accomplishments are of the highest of qualities. I am confident in every which way that [gender] is more than capable of any challenges that [gender] might face at [addressee]. Please reach out to me should you need more evidence of [firstName]'s outstanding accomplishments.
+        </p>
+
+        <div id="goodbye">
+                <p id="parting">[parting],</p>
+                <p id="your-name">[yourName]</p>
+                <p id="your-instit">[yourInstit]</p>
+
+        </div>
+    </div>
+</body>
+<script>
+
+
+
+    var queryUrl = () => { //form object from URL
+        var params = new URLSearchParams(window.location.search); //split the query string into seperate arrays
+        obj = [];
+        for (let p of params) { //combine the arrays into array of arrays.
+            obj.push(p);
+        }
+        let formObj = Object.fromEntries(obj); //form the object
+        console.log(formObj);
+        return formObj;
+    };
+
+    //function to replace placeholders to make code more readable.
+    function replaceWord(targetID, targetPlaceHolder, word) {
+        let target = document.getElementById(targetID);
+        target.innerHTML = target.innerHTML.replace(`[${targetPlaceHolder}]`, word);
+    }
+
+    urlJson = queryUrl();
+
+    window.addEventListener('DOMContentLoaded', function() {
+        //Create fullName and header and select paragraphs
+        let head = document.getElementById('head'); 
+        let firstParagraph = document.getElementById('first-para');
+        let secondParagraph = document.getElementById('second-para');
+        let thirdParagraph = document.getElementById('third-para');
+
+        //create date
+        let dateObj = new Date();
+        let date = `${dateObj.getMonth()}/${dateObj.getDate()}/${dateObj.getFullYear()}`;
+        let dateTag = document.getElementById('date');
+        dateTag.innerText = date;
+
+        //correct pronouns 
+        let gender;
+        let genderPos;
+        let pronouns =
+        [
+            ['he', 'his'],
+            ['she', 'her'],
+            ['they', 'their']
+        ]
+        if (urlJson.gender === 'male') {
+            gender = pronouns[0][0];
+            genderPos = pronouns[0][1];
+        }
+        else if (urlJson.gender === 'female') {
+            gender = pronouns[1][0];
+            genderPos = pronouns[1][1];
+        }
+        else {
+            gender = pronouns[2][0];
+            genderPos = pronouns[2][1];
+        }
+
+        
+        //Replacing lots of the words here in the letter body.
+        //genders
+        replaceWord('first-para','genderPos',genderPos);
+        [1,2].forEach(i => {
+            replaceWord('second-para','genderPos',genderPos);
+            replaceWord('second-para','gender',gender);
+            replaceWord('third-para','gender',gender);
+        });
+
+        //greetings, names, titles,
+        let addressee = urlJson.addressee;
+        let firstName = urlJson.firstname;
+        let lastName = urlJson.lastname;
+        let relationship = urlJson.relationship;
+        let fullName = ' ' + firstName + ' ' + lastName;
+
+        replaceWord('head','fullName',fullName);
+        replaceWord('greeting', 'addressee', addressee);
+
+            //first paragraph
+        replaceWord('first-para', 'fullName', fullName);
+        [1,2].forEach(i => { replaceWord('first-para','firstName', firstName); });
+        replaceWord('first-para', 'firstName', firstName);
+        replaceWord('first-para', 'addressee', addressee);
+        replaceWord('first-para', 'relationship', relationship);
+
+            //second paragraph
+        [1,2].forEach(i => { replaceWord('second-para', 'firstName', firstName); });
+        replaceWord('second-para', 'relationship', relationship);
+        replaceWord('second-para', 'addressee', addressee);
+
+            //third paragraph
+        [1,2].forEach(i => { replaceWord('third-para', 'firstName', firstName); });
+        replaceWord('third-para', 'addressee', addressee);
+
+        //numYears known and Age
+        let numYears = urlJson.timeknown;
+        let yourAge = urlJson.yourAge;
+        [1,2].forEach(i => { replaceWord('first-para', 'numYears', numYears); })
+        replaceWord('first-para', 'yourAge', yourAge);
+
+        //strengths
+        let firstStr = urlJson.firstStr;
+        let secondStr = urlJson.secondStr;
+        let thirdStr = urlJson.thirdStr;
+        let fourthStr = urlJson.fourthStr;
+
+        replaceWord('second-para', 'firstStr', firstStr);
+        replaceWord('second-para', 'secondStr', secondStr);
+        [1,2].forEach(i => { replaceWord('second-para', 'thirdStr', thirdStr); });
+        replaceWord('second-para', 'fourthStr', fourthStr);
+        
+        //parting and your name
+        let parting = urlJson.parting;
+        let yourName = urlJson.yourName;
+        let yourInstit = urlJson.yourInstit;
+
+        replaceWord('parting', 'parting', parting);
+        replaceWord('your-name', 'yourName', yourName);
+        replaceWord('your-instit', 'yourInstit', yourInstit);
+
+
+
+    });
+    
+
+
+</script>
+</html>

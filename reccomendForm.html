@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form</title>
+    <style>4
+        * {
+            margin: 0px;
+        }
+        body {
+            background-color: #f2f2f2;
+        }
+        form {
+            text-align: center;
+        }
+        h1 {
+            padding: 20px;
+        }
+        h3, h4 {
+            margin-top: 50px;
+            margin-bottom: 0px;
+        }
+        .container-textbox {
+            padding: 20px;
+        }
+        .textbox {
+            text-align: left;
+        }
+        .submit-box {
+            margin-top: 20px;
+        }
+        input, select {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            width: 100%;
+        }
+
+        #submit {
+            background: #6d6d6d;
+            border: none;
+            height: 60px;
+            width: 100%;
+            color: white;
+            font-size: 25px;
+        }
+        #submit:hover {
+            cursor: pointer;
+        }
+
+        @media screen and (min-width: 900px ) {
+            .container-textbox {
+                
+                margin-left: 25%;
+                margin-right: 25%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form id="form" action="recommendLetter.html" enctype="application/json" target="_blank">
+        <h1>Letter of Reccomendation Form</h1>
+        <h3>Student</h3>
+        <div class="container-textbox">
+            <p class="textbox">First Name </p> <input type="text" name="firstname" id="first-name" placeholder="Jeremy" required>
+        </div>
+        <div class="container-textbox">
+            <p class="textbox">Last Name </p> <input type="text" name="lastname" id="last-name" placeholder="Manuel" required>
+        </div>
+
+        <div class="container-textbox">
+            <p class="textbox">Student Gender</p>
+            <select name="gender" id="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <h4>3 Strengths</h4>
+        <div class="container-textbox">
+                <p class="textbox">Strength 1</p>
+                <input type="text" name="firstStr" id="first-str" placeholder="intelligence" required pattern="^\S+$">
+        </div>
+        <div class="container-textbox">
+                <p class="textbox">Strength 2</p>
+                <input type="text" name="secondStr" id="second-str" placeholder="commitment" required pattern="^\S+$">
+        </div>
+        <div class="container-textbox">
+                <p class="textbox">Strength 3</p>
+                <input type="text" name="thirdStr" id="third-str" placeholder="resiliency" required pattern="^\S+$">
+        </div>
+        <div class="container-textbox">
+                <p class="textbox">Strength 4</p>
+                <input type="text" name="fourthStr" id="fourth-str" placeholder="helpfulness" required pattern="^\S+$">
+        </div>
+
+        <h3>You</h3>
+        <div class="container-textbox">
+            <p class="textbox"># years with student</p> <input type="number" name="timeknown" id="time-known" step="1" required >
+        </div>
+
+        <div class="container-textbox">
+            <p class="textbox">Your full name</p> <input type="text" name="yourName" id="your-name" placeholder="David Wagstaff" required>
+        </div>
+
+        <div class="container-textbox">
+            <p class="textbox">Your institution/company</p> <input type="text" name="yourInstit" id="your-instit" placeholder="Utah Valley University" required>
+        </div>
+
+        <div class="container-textbox">
+            <p class="textbox">Relationship to Student </p> <input type="text" name="relationship" id="relationship" placeholder="Instructor" required>
+        </div>
+
+        <div class="container-textbox">
+            <p class="textbox">Letter Parting</p> <input type="text" name="parting" id="parting" placeholder="Sincerely" required>
+            <p class="textbox">Omit the comma</p>
+        </div>
+
+        <h3>The Institution/Company</h3>
+        <div class="container-textbox">
+                <p class="textbox">Addressee </p> <input type="text" name="addressee" id="last-name" placeholder="Google" required>
+                <p class="textbox">Not an individual's name, but institution or company.</p>
+        </div>
+
+        <div class="submit-box">
+            <button id="submit" type="submit">Submit</button>
+        </div>
+
+
+    </form>
+</body>
+<script>
+    function submitChk() {
+        console.log('submitted');
+    }
+    var form = document.getElementById('submit');
+    form.addEventListener('click', submitChk());
+</script>
+</html>
