@@ -10,6 +10,7 @@
             margin: 0px;
         }
         body {
+            font-size: 16px;
             background-color: #f2f2f2;
         }
         form {
@@ -19,6 +20,7 @@
             padding: 20px;
         }
         h3, h4 {
+            font-size: inherit;
             margin-top: 50px;
             margin-bottom: 0px;
         }
@@ -26,7 +28,11 @@
             padding: 20px;
         }
         .textbox {
+            font-size: inherit;
             text-align: left;
+        }
+        p {
+            font-size: inherit;
         }
         .submit-box {
             margin-top: 20px;
@@ -36,8 +42,11 @@
             padding-bottom: 10px;
             width: 100%;
         }
-        input[type="text"], input[type="number"], select:focus {
+        select {
             font-size: 16px;
+        }
+        input[type="text"], input[type="number"], select:focus {
+            font-size: inherit;
         }
 
         #submit {
@@ -84,19 +93,19 @@
         <h4>3 Strengths</h4>
         <div class="container-textbox">
                 <p class="textbox">Strength 1</p>
-                <input type="text" name="firstStr" id="first-str" placeholder="intelligence" required pattern="^\S+$">
+                <input type="text" autocapitalize="none" name="firstStr" id="first-str" placeholder="intelligence" required pattern="^\S+$">
         </div>
         <div class="container-textbox">
                 <p class="textbox">Strength 2</p>
-                <input type="text" name="secondStr" id="second-str" placeholder="commitment" required pattern="^\S+$">
+                <input type="text" autocapitalize="none" name="secondStr" id="second-str" placeholder="commitment" required pattern="^\S+$">
         </div>
         <div class="container-textbox">
                 <p class="textbox">Strength 3</p>
-                <input type="text" name="thirdStr" id="third-str" placeholder="resiliency" required pattern="^\S+$">
+                <input type="text" autocapitalize="none" name="thirdStr" id="third-str" placeholder="resiliency" required pattern="^\S+$">
         </div>
         <div class="container-textbox">
                 <p class="textbox">Strength 4</p>
-                <input type="text" name="fourthStr" id="fourth-str" placeholder="helpfulness" required pattern="^\S+$">
+                <input type="text" autocapitalize="none" name="fourthStr" id="fourth-str" placeholder="helpfulness" required pattern="^\S+$">
         </div>
 
         <h3>You</h3>
@@ -105,25 +114,25 @@
         </div>
 
         <div class="container-textbox">
-            <p class="textbox">Your full name</p> <input type="text" name="yourName" id="your-name" placeholder="David Wagstaff" required>
+            <p class="textbox">Your full name</p> <input type="text" name="yourName" id="your-name" placeholder="Antonio Spaghettio" required>
         </div>
 
         <div class="container-textbox">
-            <p class="textbox">Your institution/company</p> <input type="text" name="yourInstit" id="your-instit" placeholder="Utah Valley University" required>
+            <p class="textbox">Your institution/company</p> <input type="text" autocapitalize="none" name="yourInstit" id="your-instit" placeholder="Utah Valley University" required>
         </div>
 
         <div class="container-textbox">
-            <p class="textbox">Relationship to Student </p> <input type="text" name="relationship" id="relationship" placeholder="Instructor" required>
+            <p class="textbox">Relationship to Student </p> <input type="text" autocapitalize="none" name="relationship" id="relationship" placeholder="Instructor" required>
         </div>
 
         <div class="container-textbox">
-            <p class="textbox">Letter Parting</p> <input type="text" name="parting" id="parting" placeholder="Sincerely" required>
+            <p class="textbox">Letter Parting</p> <input type="text" autocapitalize="none" name="parting" id="parting" placeholder="Sincerely" required>
             <p class="textbox">Omit the comma</p>
         </div>
 
         <h3>The Institution/Company</h3>
         <div class="container-textbox">
-                <p class="textbox">Addressee </p> <input type="text" name="addressee" id="last-name" placeholder="Google" required>
+                <p class="textbox">Addressee </p> <input type="text" autocapitalize="none" name="addressee" id="last-name" placeholder="Google" required>
                 <p class="textbox">Not an individual's name, but institution or company.</p>
         </div>
 
